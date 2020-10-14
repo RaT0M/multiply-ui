@@ -35,9 +35,9 @@ def auth_form():
         scihub_info.output_message('Setting SciHub Authentication ...')
         scihub_auth = {'user_name': scihub_user_name.value, 'password': scihub_password.value}
         set_scihub_authentication(scihub_auth, scihub_info.message_func)
-        scihub_info.output_message('Earth Data Authentication set')
+        scihub_info.output_message('SciHub Authentication set')
 
-    set_scihub_button = widgets.Button(description="Set SCIHUB Authentication Credentials")
+    set_scihub_button = widgets.Button(description="Set SciHub Authentication Credentials")
     set_scihub_button.on_click(set_scihub_auth)
 
     @debug_view.capture(clear_output=True)
