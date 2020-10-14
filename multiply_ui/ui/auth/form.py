@@ -1,4 +1,4 @@
-from .api import set_earth_data_authentication, set_mundi_authentication
+from .api import set_earth_data_authentication, set_mundi_authentication, set_scihub_authentication
 from ..debug import get_debug_view
 from ..info import InfoComponent
 from ...util.html import html_element
@@ -13,6 +13,8 @@ def auth_form():
 
     earth_data_info = InfoComponent()
     mundi_info = InfoComponent()
+    scihub_user_name = widgets.Text()
+    scihub_password = widgets.Text()
     earth_data_user_name = widgets.Text()
     earth_data_password = widgets.Text()
     mundi_access_key_id = widgets.Text()
@@ -20,16 +22,16 @@ def auth_form():
 
     @debug_view.capture(clear_output=True)
     def set_scihub_auth(*args, **kwargs):
-        if scihub_access_key_id.value == '':
-            scihub_info.output_error('No Access Key ID set')
+        if scihub_user_name.value == '':
+            scihub_info.output_error('No User Name set')
             return
-        if scihub_secret_access_key.value == '':
-            scihub_info.output_error('No Secret Access Key set')
+        if scihub_password.value == '':
+            scihub_info.output_error('No Password set')
             return
-        scihub_info.output_message('Setting SCIHUB Authentication ...')
-        scihub_auth = {'access_key_id': scihub_access_key_id.value, 'secret_access_key': scihub_secret_access_key.value}
+        scihub_info.output_message('Setting SciHub Authentication ...')
+        scihub_auth = {'user_name': scihub_user_name.value, 'password': scihub_password.value}
         set_scihub_authentication(scihub_auth, scihub_info.message_func)
-        scihub_info.output_message('SCIHUB Authentication set')
+        scihub_info.output_message('Earth Data Authentication set')
 
     set_scihub_button = widgets.Button(description="Set SCIHUB Authentication Credentials")
     set_scihub_button.on_click(set_scihub_auth)
