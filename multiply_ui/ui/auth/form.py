@@ -11,12 +11,16 @@ __author__ = 'Tonio Fincke (Brockmann Consult GmbH)'
 def auth_form():
     debug_view = get_debug_view()
 
+    scihub_info = InfoComponent()
     earth_data_info = InfoComponent()
     mundi_info = InfoComponent()
+
     scihub_user_name = widgets.Text()
     scihub_password = widgets.Text()
+
     earth_data_user_name = widgets.Text()
     earth_data_password = widgets.Text()
+
     mundi_access_key_id = widgets.Text()
     mundi_secret_access_key = widgets.Text()
 
