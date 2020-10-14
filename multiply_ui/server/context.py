@@ -14,7 +14,7 @@ from multiply_core.observations import INPUT_TYPES
 from multiply_core.variables import get_registered_variables
 from multiply_post_processing import get_available_indicators, get_post_processor_creators, PostProcessorType
 from multiply_prior_engine.vegetation_prior_creator import SUPPORTED_VARIABLES as POSSIBLE_USER_PRIORS
-from vm_support import set_earth_data_authentication, set_mundi_authentication
+from vm_support import set_earth_data_authentication, set_mundi_authentication, set_scihub_authentication
 
 from .model import Job
 
@@ -142,7 +142,7 @@ class ServiceContext:
         dict_list = []
         post_processor_creators = get_post_processor_creators()
         for post_processor_creator in post_processor_creators:
-            indicator_descriptions = post_processor_creator.get_indicator_descriptions()            
+            indicator_descriptions = post_processor_creator.get_indicator_descriptions()
             indicator_names = []
             for indicator_description in indicator_descriptions:
                 indicator_names.append(indicator_description.short_name)
@@ -161,6 +161,10 @@ class ServiceContext:
     @staticmethod
     def set_earth_data_authentication(username: str, password: str):
         set_earth_data_authentication(username, password)
+
+    @staticmethod
+    def set_scihub_authentication(username: str, password: str):
+        set_scihub_authentication(username, password)
 
     @staticmethod
     def set_mundi_authentication(access_key_id: str, secret_access_key: str):

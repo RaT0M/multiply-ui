@@ -139,6 +139,14 @@ class PostEarthDataAuthHandler(ServiceRequestHandler):
 
 
 # noinspection PyAbstractClass
+class PostSciHubAuthHandler(ServiceRequestHandler):
+    def post(self):
+        self.set_header('Content-Type', 'application/json')
+        parameters = self.get_body_as_json_object()
+        controller.set_scihub_authentication(self.ctx, parameters)
+
+
+# noinspection PyAbstractClass
 class PostMundiAuthHandler(ServiceRequestHandler):
     def post(self):
         self.set_header('Content-Type', 'application/json')

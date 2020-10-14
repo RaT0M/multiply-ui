@@ -1,13 +1,14 @@
 import tornado.web
 
 from .handlers import ClearHandler, GetParametersHandler, GetInputsHandler, GetJobHandler, ExecuteJobsHandler, \
-    CancelHandler, PostEarthDataAuthHandler, PostMundiAuthHandler, VisualizeHandler
+    CancelHandler, PostEarthDataAuthHandler, PostMundiAuthHandler, PostSciHubAuthHandler, VisualizeHandler
 
 
 def new_application():
     return tornado.web.Application([
         (r"/multiply/api/auth/earthdata", PostEarthDataAuthHandler),
         (r"/multiply/api/auth/mundi", PostMundiAuthHandler),
+        (r"/multiply/api/auth/scihub", PostSciHubAuthHandler),
         (url_pattern(r"/multiply/api/clear/{{clear_type}}"), ClearHandler),
         (r"/multiply/api/jobs/execute", ExecuteJobsHandler),
         (url_pattern(r"/multiply/api/jobs/get/{{job_id}}"), GetJobHandler),

@@ -225,6 +225,8 @@ def _pm_workflow_of(pm) -> List:
 def set_earth_data_authentication(ctx, parameters):
     ctx.set_earth_data_authentication(parameters['user_name'], parameters['password'])
 
+def set_scihub_authentication(ctx, parameters):
+    ctx.set_scihub_authentication(parameters['user_name'], parameters['password'])
 
 def set_mundi_authentication(ctx, parameters):
     ctx.set_mundi_authentication(parameters['access_key_id'], parameters['secret_access_key'])

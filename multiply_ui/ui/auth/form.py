@@ -19,6 +19,22 @@ def auth_form():
     mundi_secret_access_key = widgets.Text()
 
     @debug_view.capture(clear_output=True)
+    def set_scihub_auth(*args, **kwargs):
+        if scihub_access_key_id.value == '':
+            scihub_info.output_error('No Access Key ID set')
+            return
+        if scihub_secret_access_key.value == '':
+            scihub_info.output_error('No Secret Access Key set')
+            return
+        scihub_info.output_message('Setting SCIHUB Authentication ...')
+        scihub_auth = {'access_key_id': scihub_access_key_id.value, 'secret_access_key': scihub_secret_access_key.value}
+        set_scihub_authentication(scihub_auth, scihub_info.message_func)
+        scihub_info.output_message('SCIHUB Authentication set')
+
+    set_scihub_button = widgets.Button(description="Set SCIHUB Authentication Credentials")
+    set_scihub_button.on_click(set_scihub_auth)
+
+    @debug_view.capture(clear_output=True)
     def set_earth_data_auth(*args, **kwargs):
         if earth_data_user_name.value == '':
             earth_data_info.output_error('No User Name set')
