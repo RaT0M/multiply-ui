@@ -74,6 +74,11 @@ def auth_form():
         justify_content='space-between',
     )
     form_items = [
+        widgets.Box([widgets.HTML(value=html_element('h2', value='SciHub Authentication'))], layout=form_item_layout),
+        widgets.Box([widgets.Label(value='User name'), scihub_user_name], layout=form_item_layout),
+        widgets.Box([widgets.Label(value='Password'), scihub_password], layout=form_item_layout),
+        widgets.Box([widgets.Label(value=''), set_scihub_button], layout=form_item_layout),
+        widgets.Box([scihub_info.as_widget()], layout=form_item_layout),
         widgets.Box([widgets.HTML(value=html_element('h2', value='Earth Data Authentication'))], layout=form_item_layout),
         widgets.Box([widgets.Label(value='User name'), earth_data_user_name], layout=form_item_layout),
         widgets.Box([widgets.Label(value='Password'), earth_data_password], layout=form_item_layout),
